@@ -1,48 +1,40 @@
-# Homepage sections. Edit freely — this is plain YAML.
-# A section has either `pages` (links to pages on this site)
-# or `groups` (categories of external links, like Media / Art).
-
 - title: Projects
-  blurb: >-
-    Learnings from projects I’ve worked on in the past, and updates about
+  blurb: Learnings from projects I’ve worked on in the past, and updates about
     stuff I’m currently exploring.
   pages:
     - label: Hamster
       href: /hamster
     - label: Pet Projects
       href: /pet-projects
-
 - title: Media / Art
-  blurb: >-
-    A non exhaustive list of stuff I found beautiful / inspiring, in no
-    particular order.
+  blurb: A non exhaustive list of stuff I keep coming back to, in no particular order.
   groups:
     - name: Films / TV
       items:
         - title: Hamilton
           url: https://letterboxd.com/film/hamilton-2020/
-        - title: The Last Dance
-          url: https://www.imdb.com/title/tt8420184/
+        - title: DevD
+          url: https://www.kviff.com/en/programme/film/31/8234-devd
         - title: The Social Network
           url: https://letterboxd.com/film/the-social-network/
-        - title: Fight Club
-          url: https://letterboxd.com/film/fight-club/
     - name: Music
       items:
-        - title: Brat
-          url: https://open.spotify.com/album/2lIZef4lzdvZkiiCzvPKj7
         - title: Is This It
-          url: https://open.spotify.com/album/2yNaksHgeMQM9Quse463b5
+          url: https://www.rollingstone.com/music/music-album-reviews/is-this-it-252334/
         - title: The New Abnormal
           url: https://open.spotify.com/album/2xkZV2Hl1Omi8rk2D7t5lN
-        - title: The Man
+        - title: The Man by The Killers
           url: https://open.spotify.com/track/5aWhs651KYM26HYM16kRdk
-        - title: Graduation
+        - title: Kanye :)
           url: https://open.spotify.com/album/4SZko61aMnmgvNhfhgTuD3
     - name: Books
       items:
         - title: War Of The Rats
           url: https://www.goodreads.com/book/show/42615
+        - title: The Fountainhead by Ayn Rand
+          url: https://www.goodreads.com/en/book/show/2122.The_Fountainhead
+        - title: Taleb (mostly)
+          url: https://www.goodreads.com/en/book/show/36064445-skin-in-the-game
     - name: Games
       items:
         - title: The Last of Us
@@ -51,14 +43,10 @@
           url: https://store.steampowered.com/app/2668510/Red_Dead_Redemption/
         - title: Journey
           url: https://store.steampowered.com/app/638230/Journey/
-        - title: 'Need for Speed: Most Wanted (2005)'
-          url: https://www.mobygames.com/game/20125/need-for-speed-most-wanted/
         - title: Stray
           url: https://store.steampowered.com/app/1332010/Stray/
-
 - title: Wandering
-  blurb: >-
-    A place to document my journey navigating through the roads of cities and
+  blurb: A place to document my journey navigating through the roads of cities and
     rabbit holes of the internet. Both of them typically at ungodly hours.
   pages:
     - label: Puzzles
