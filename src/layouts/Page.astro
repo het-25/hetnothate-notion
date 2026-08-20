@@ -1,0 +1,10 @@
+---
+import Base from './Base.astro'
+const { frontmatter } = Astro.props
+const crumbs = [...(frontmatter.parents ?? []), { label: frontmatter.title }]
+---
+
+<Base title={frontmatter.title} description={frontmatter.description} crumbs={crumbs}>
+  <h1>{frontmatter.title}</h1>
+  <slot />
+</Base>

@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro'
+
+const sections = [
+  {
+    title: 'Startup / Projects',
+    blurb:
+      'Learnings from projects I’ve worked on in the past, and updates about stuff I’m currently exploring.',
+    pages: [
+      { label: 'Hamster', href: '/hamster' },
+      { label: 'Pet Projects', href: '/pet-projects' }
+    ]
+  },
+  {
+    title: 'Reviews',
+    blurb: 'Reviews of my favourite music, shows, and books. (Propaganda)',
+    pages: [
+      { label: 'Hamilton', href: '/hamilton' },
+      { label: 'The Strokes', href: '/strokes' },
+      { label: 'The Bear', href: '/carmy-is-not-okay' },
+      { label: 'War Of The Rats', href: '/war-of-ze-ratz' }
+    ]
+  },
+  {
+    title: 'Wandering',
+    blurb:
+      'A place to document my journey navigating through the roads of cities and rabbit holes of the internet. Both of them typically at ungodly hours.',
+    pages: [
+      { label: 'Puzzles', href: '/puzzles' },
+      { label: 'Familiar Neighbourhoods', href: '/multiple-homes' }
+    ]
+  }
+]
+---
+
+<Base title="Het's Website">
+  <h1>Het’s Website</h1>
+
+  <p>
+    Hey, this is Het. Welcome to my corner of the internet. I like math, tech,
+    history, pop culture, and <em>yapping</em>. Hit me up if you want to talk
+    about any of the four (or an unrelated 5th thing), big fan of listening to
+    people yap.
+  </p>
+
+  <p>
+    I graduated with an EE degree from IIT Delhi in 2023. These days I’m
+    building <a href="https://usefaff.com">faff</a> — an earlier version of
+    this page said I was “unemployed, trying to build something from scratch”,
+    and this is the something. Before this, I was an AI research intern at the
+    Vector Institute where I worked on improving sampling efficiency in model
+    based RL. Hit me up if you want to talk about AI or startups.
+  </p>
+
+  <p>
+    In my free time (which is getting increasingly hard to define these days),
+    I like exploring — from trivia rabbit holes on the internet to food joints
+    in cities. I’ve had the privilege of living in Ahmedabad, Delhi, (and now)
+    Bangalore. Hit me up if you want to share food recommendations for any of
+    these (or parts of Bombay).
+  </p>
+
+  <p><strong>tldr; Hit me up!</strong></p>
+
+  <div class="contact-row">
+    <a href="https://api.whatsapp.com/send?phone=916351492258">WhatsApp</a>
+    <a href="mailto:2522het.patel@gmail.com">Email</a>
+    <a href="http://twitter.com/hetnothate">Twitter</a>
+    <a href="https://www.linkedin.com/in/het-patel-81526a18b/">LinkedIn</a>
+  </div>
+
+  <hr />
+
+  <p>
+    This website is an attempt at getting myself to write and put myself out
+    there more often. Most of what (I hope to) share will broadly fall into one
+    of three categories.
+  </p>
+
+  {
+    sections.map((s) => (
+      <section>
+        <h2>{s.title}</h2>
+        <p class="muted">{s.blurb}</p>
+        <ul class="page-list">
+          {s.pages.map((p) => (
+            <li>
+              <a href={p.href}>{p.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <hr />
+
+  <p class="muted">
+    Right now, this is like a fresh notebook with just my name on the first
+    page. Hopefully I’ll have more ‘pages’ by the time of your next visit :”)
+  </p>
+</Base>
