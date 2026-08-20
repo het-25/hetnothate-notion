@@ -5,7 +5,7 @@ description: The objective mismatch problem in model based RL.
 parents:
   - label: Pet Projects
     href: /pet-projects
-updated: 2025-03-03
+updated: 2025-03-06
 ---
 
 The objective mismatch problem in model based RL and a value aware approach to

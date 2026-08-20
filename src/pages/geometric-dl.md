@@ -5,7 +5,7 @@ description: Exploiting symmetries to aid deep learning.
 parents:
   - label: Pet Projects
     href: /pet-projects
-updated: 2025-03-21
+updated: 2025-03-06
 ---
 
 Exploiting symmetries to aid deep learning.
