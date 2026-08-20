@@ -19,25 +19,22 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <script is:inline>
-      const saved = localStorage.getItem('theme')
-      if (saved) document.documentElement.dataset.theme = saved
-    </script>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/" class="site-name">Het’s Website</a>
-        {
-          crumbs.map((c) => (
-            <span class="crumb">
-              / {c.href ? <a href={c.href}>{c.label}</a> : c.label}
-            </span>
-          ))
-        }
-      </nav>
-      <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
-    </header>
+    {
+      crumbs.length > 0 && (
+        <header>
+          <nav>
+            <a href="/" class="home-link">Home</a>
+            {crumbs.map((c) => (
+              <span class="crumb">
+                / {c.href ? <a href={c.href}>{c.label}</a> : c.label}
+              </span>
+            ))}
+          </nav>
+        </header>
+      )
+    }
 
     {
       cover && (
@@ -59,37 +56,8 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
 
     <footer>© {new Date().getFullYear()} Het</footer>
 
-    <script is:inline>
-      document.getElementById('theme-toggle').addEventListener('click', () => {
-        const root = document.documentElement
-        const dark = matchMedia('(prefers-color-scheme: dark)').matches
-        const current = root.dataset.theme || (dark ? 'dark' : 'light')
-        const next = current === 'dark' ? 'light' : 'dark'
-        root.dataset.theme = next
-        localStorage.setItem('theme', next)
-      })
-    </script>
-
     <style is:global>
       :root {
-        --bg: #ffffff;
-        --fg: #37352f;
-        --muted: #787774;
-        --line: #e9e9e7;
-        --accent: #0b6e99;
-        --card: #f7f6f3;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme='light']) {
-          --bg: #191919;
-          --fg: #d4d4d4;
-          --muted: #9b9b9b;
-          --line: #2f2f2f;
-          --accent: #529cca;
-          --card: #202020;
-        }
-      }
-      :root[data-theme='dark'] {
         --bg: #191919;
         --fg: #d4d4d4;
         --muted: #9b9b9b;
@@ -99,7 +67,7 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       }
 
       * { box-sizing: border-box; }
-      html { -webkit-text-size-adjust: 100%; }
+      html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
       body {
         margin: 0;
         background: var(--bg);
@@ -111,27 +79,15 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         font-size: 16px;
       }
       header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         max-width: 720px;
         margin: 0 auto;
         padding: 1rem 1.25rem;
       }
       nav { display: flex; gap: 0.5ch; flex-wrap: wrap; align-items: baseline; }
-      .site-name { font-weight: 600; color: var(--fg); text-decoration: none; }
+      .home-link { font-weight: 600; color: var(--fg); text-decoration: none; }
       .crumb { color: var(--muted); }
       .crumb a { color: var(--muted); }
       .crumb a:hover { color: var(--fg); text-decoration: none; }
-      #theme-toggle {
-        background: none;
-        border: none;
-        color: var(--muted);
-        font-size: 1.1rem;
-        cursor: pointer;
-        padding: 0.25rem 0.5rem;
-      }
-      #theme-toggle:hover { color: var(--fg); }
 
       .cover-wrap { position: relative; margin: 0; }
       .page-cover {
@@ -189,22 +145,6 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       }
       .muted { color: var(--muted); }
 
-      .page-list { list-style: none; padding: 0; margin: 0.5rem 0; }
-      .page-list li { margin: 0; }
-      .page-list a {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        padding: 0.4rem 0.5rem;
-        margin: 0 -0.5rem;
-        border-radius: 4px;
-        color: var(--fg);
-        font-weight: 500;
-      }
-      .page-list a:hover { text-decoration: none; background: var(--card); }
-      .page-list svg { flex: none; fill: var(--muted); }
-      .page-list .label { border-bottom: 1px solid var(--line); }
-
       details.section { margin: 0.75rem 0; }
       details.section summary {
         display: flex;
@@ -238,16 +178,38 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         margin: -0.9rem 0 1.75rem;
       }
 
+      .page-list { list-style: none; padding: 0; margin: 0.5rem 0; }
+      .page-list li { margin: 0.4rem 0; }
+
+      .arrow-link {
+        color: var(--fg);
+        text-decoration: underline;
+        text-decoration-color: var(--muted);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+      .arrow-link::after {
+        content: ' ↗';
+        font-size: 0.75em;
+        color: var(--muted);
+        text-decoration: none;
+        display: inline-block;
+      }
+      .arrow-link:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--fg);
+      }
+      .arrow-link:hover::after { color: var(--fg); }
+
       .media-list {
         list-style: none;
         padding: 0;
         margin: 0.4rem 0 1rem;
       }
       .media-list li {
-        margin: 0.25rem 0;
+        margin: 0.3rem 0;
         break-inside: avoid;
       }
-      .media-list .by { color: var(--muted); }
       @media (min-width: 560px) {
         .media-list { columns: 2; column-gap: 2.5rem; }
       }
