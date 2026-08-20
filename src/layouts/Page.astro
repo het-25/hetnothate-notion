@@ -4,7 +4,12 @@ const { frontmatter } = Astro.props
 const crumbs = [...(frontmatter.parents ?? []), { label: frontmatter.title }]
 ---
 
-<Base title={frontmatter.title} description={frontmatter.description} crumbs={crumbs}>
+<Base
+  title={frontmatter.title}
+  description={frontmatter.description}
+  crumbs={crumbs}
+  cover={frontmatter.cover}
+>
   <h1>{frontmatter.title}</h1>
   <slot />
 </Base>

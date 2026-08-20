@@ -2,6 +2,7 @@
 layout: ../layouts/Page.astro
 title: Hamilton
 description: Fanboying over Lin Manuel Miranda's genius.
+cover: /covers/hamilton.jpg
 ---
 
 Lin Manuel Miranda is a genius. Got me hooked on musicals. I don’t think I’ll

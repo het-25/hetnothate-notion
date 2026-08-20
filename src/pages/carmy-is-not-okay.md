@@ -2,6 +2,7 @@
 layout: ../layouts/Page.astro
 title: The Bear
 description: Hands down my favourite TV show of all time.
+cover: /covers/thebear.png
 ---
 
 Hands down my favourite TV show of all time (cue a paragraph about recency

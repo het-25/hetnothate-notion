@@ -1,5 +1,5 @@
 ---
-const { title, description = "Het's dump ground", crumbs = [] } = Astro.props
+const { title, description = "Het's dump ground", crumbs = [], cover } = Astro.props
 const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website`
 ---
 
@@ -31,6 +31,8 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       </nav>
       <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
     </header>
+
+    {cover && <img class="page-cover" src={cover} alt="" />}
 
     <main>
       <slot />
@@ -111,6 +113,15 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         padding: 0.25rem 0.5rem;
       }
       #theme-toggle:hover { color: var(--fg); }
+
+      .page-cover {
+        display: block;
+        width: 100%;
+        height: 30vh;
+        min-height: 180px;
+        max-height: 340px;
+        object-fit: cover;
+      }
 
       main {
         max-width: 720px;
