@@ -16,20 +16,29 @@ const sections = [
     ]
   },
   {
-    title: 'Reviews',
-    blurb: 'Reviews of my favourite music, shows, and books. (Propaganda)',
+    title: 'Media / Art',
+    blurb: 'A list of stuff I found beautiful / inspiring, in no particular order.',
     groups: [
-      { name: 'Films / TV', pages: [] },
+      { name: 'Films / TV', items: ['Hamilton'] },
       {
         name: 'Music',
-        pages: [
-          { label: 'Hamilton', href: '/hamilton' },
-          { label: 'The Strokes', href: '/strokes' }
+        items: [
+          { t: 'Brat', by: 'Charli XCX' },
+          { t: 'Is This It', by: 'The Strokes' },
+          { t: 'The New Abnormal', by: 'The Strokes' },
+          { t: 'The Man', by: 'The Killers' }
         ]
       },
+      { name: 'Books', items: ['War Of The Rats'] },
       {
-        name: 'Books',
-        pages: [{ label: 'War Of The Rats', href: '/war-of-ze-ratz' }]
+        name: 'Games',
+        items: [
+          'The Last of Us',
+          'Red Dead Redemption',
+          'Journey',
+          'Need for Speed: Most Wanted (2005)',
+          'Stray'
+        ]
       }
     ]
   },
@@ -109,7 +118,21 @@ const sections = [
           {s.groups.map((g) => (
             <>
               {g.name && <h3>{g.name}</h3>}
-              {g.pages.length > 0 ? (
+              {g.items ? (
+                <ul class="media-list">
+                  {g.items.map((it) => (
+                    <li>
+                      {typeof it === 'string' ? (
+                        it
+                      ) : (
+                        <>
+                          {it.t} <span class="by">— {it.by}</span>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : g.pages.length > 0 ? (
                 <ul class="page-list">
                   {g.pages.map((p) => (
                     <li>

@@ -238,6 +238,20 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         margin: -0.9rem 0 1.75rem;
       }
 
+      .media-list {
+        list-style: none;
+        padding: 0;
+        margin: 0.4rem 0 1rem;
+      }
+      .media-list li {
+        margin: 0.25rem 0;
+        break-inside: avoid;
+      }
+      .media-list .by { color: var(--muted); }
+      @media (min-width: 560px) {
+        .media-list { columns: 2; column-gap: 2.5rem; }
+      }
+
       .contact-row {
         display: flex;
         flex-wrap: wrap;
