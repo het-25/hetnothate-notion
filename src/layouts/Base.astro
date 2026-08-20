@@ -54,8 +54,6 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       <slot />
     </main>
 
-    <footer>© {new Date().getFullYear()} Het</footer>
-
     <style is:global>
       :root {
         --bg: #191919;
@@ -226,14 +224,6 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         text-decoration: none;
         border-color: var(--accent);
         color: var(--accent);
-      }
-
-      footer {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 1rem 1.25rem 2.5rem;
-        color: var(--muted);
-        font-size: 0.85rem;
       }
     </style>
   </body>
