@@ -9,6 +9,7 @@ const crumbs = [...(frontmatter.parents ?? []), { label: frontmatter.title }]
   description={frontmatter.description}
   crumbs={crumbs}
   cover={frontmatter.cover}
+  coverPosition={frontmatter.coverPosition}
 >
   <h1>{frontmatter.title}</h1>
   <slot />
