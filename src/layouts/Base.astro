@@ -4,7 +4,8 @@ const {
   description = "Het's dump ground",
   crumbs = [],
   cover,
-  coverPosition = 'center 50%'
+  coverPosition = 'center 50%',
+  coverCaption
 } = Astro.props
 const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website`
 ---
@@ -40,12 +41,15 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
 
     {
       cover && (
-        <img
-          class="page-cover"
-          src={cover}
-          alt=""
-          style={`object-position: ${coverPosition}`}
-        />
+        <figure class="cover-wrap">
+          <img
+            class="page-cover"
+            src={cover}
+            alt=""
+            style={`object-position: ${coverPosition}`}
+          />
+          {coverCaption && <figcaption class="cover-caption">{coverCaption}</figcaption>}
+        </figure>
       )
     }
 
@@ -129,6 +133,7 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       }
       #theme-toggle:hover { color: var(--fg); }
 
+      .cover-wrap { position: relative; margin: 0; }
       .page-cover {
         display: block;
         width: 100%;
@@ -136,6 +141,23 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         min-height: 200px;
         max-height: 400px;
         object-fit: cover;
+      }
+      .cover-caption {
+        position: absolute;
+        right: 12px;
+        bottom: 10px;
+        font-size: 0.7rem;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.45);
+        padding: 2px 8px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+      }
+      .cover-wrap:hover .cover-caption { opacity: 1; }
+      @media (prefers-reduced-motion: reduce) {
+        .cover-caption { transition: none; }
       }
 
       main {
@@ -216,7 +238,13 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
         margin: -0.9rem 0 1.75rem;
       }
 
-      .contact-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin: 1rem 0;
+        justify-content: center;
+      }
       .contact-row a {
         padding: 0.3rem 0.9rem;
         border: 1px solid var(--line);
