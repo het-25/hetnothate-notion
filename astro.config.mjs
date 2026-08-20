@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config'
+import yaml from '@rollup/plugin-yaml'
 
 export default defineConfig({
-  site: 'https://www.hetnothate.com'
+  site: 'https://www.hetnothate.com',
+  vite: { plugins: [yaml()] }
 })

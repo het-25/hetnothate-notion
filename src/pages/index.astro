@@ -1,75 +1,7 @@
 ---
 import Base from '../layouts/Base.astro'
-
-const sections = [
-  {
-    title: 'Startup / Projects',
-    blurb:
-      'Learnings from projects I’ve worked on in the past, and updates about stuff I’m currently exploring.',
-    groups: [
-      {
-        pages: [
-          { label: 'Hamster', href: '/hamster' },
-          { label: 'Pet Projects', href: '/pet-projects' }
-        ]
-      }
-    ]
-  },
-  {
-    title: 'Media / Art',
-    blurb: 'A list of stuff I found beautiful / inspiring, in no particular order.',
-    groups: [
-      {
-        name: 'Films / TV',
-        items: [
-          { t: 'Hamilton', href: 'https://en.wikipedia.org/wiki/Hamilton_(musical)' }
-        ]
-      },
-      {
-        name: 'Music',
-        items: [
-          { t: 'Brat', href: 'https://en.wikipedia.org/wiki/Brat_(album)' },
-          { t: 'Is This It', href: 'https://en.wikipedia.org/wiki/Is_This_It' },
-          { t: 'The New Abnormal', href: 'https://en.wikipedia.org/wiki/The_New_Abnormal' },
-          { t: 'The Man', href: 'https://en.wikipedia.org/wiki/The_Man_(The_Killers_song)' },
-          { t: 'Graduation', href: 'https://en.wikipedia.org/wiki/Graduation_(album)' }
-        ]
-      },
-      {
-        name: 'Books',
-        items: [
-          { t: 'War Of The Rats', href: 'https://en.wikipedia.org/wiki/War_of_the_Rats' }
-        ]
-      },
-      {
-        name: 'Games',
-        items: [
-          { t: 'The Last of Us', href: 'https://en.wikipedia.org/wiki/The_Last_of_Us' },
-          { t: 'Red Dead Redemption', href: 'https://en.wikipedia.org/wiki/Red_Dead_Redemption' },
-          { t: 'Journey', href: 'https://en.wikipedia.org/wiki/Journey_(2012_video_game)' },
-          {
-            t: 'Need for Speed: Most Wanted (2005)',
-            href: 'https://en.wikipedia.org/wiki/Need_for_Speed:_Most_Wanted_(2005_video_game)'
-          },
-          { t: 'Stray', href: 'https://en.wikipedia.org/wiki/Stray_(video_game)' }
-        ]
-      }
-    ]
-  },
-  {
-    title: 'Wandering',
-    blurb:
-      'A place to document my journey navigating through the roads of cities and rabbit holes of the internet. Both of them typically at ungodly hours.',
-    groups: [
-      {
-        pages: [
-          { label: 'Puzzles', href: '/puzzles' },
-          { label: 'Familiar Neighbourhoods', href: '/multiple-homes' }
-        ]
-      }
-    ]
-  }
-]
+import { Content as Intro } from '../content/home-intro.md'
+import sections from '../data/sections.yaml'
 ---
 
 <Base
@@ -80,30 +12,7 @@ const sections = [
 >
   <h1>Het’s Website</h1>
 
-  <p>
-    Hi, I am Het. Welcome to my excuse for owning a domain. I like math, tech,
-    history, pop culture, and yapping. Hit me up if you want to talk about any
-    of the four (or an unrelated 5th thing), big fan of listening to people
-    yap.
-  </p>
-
-  <p>
-    I graduated with an EE degree from IIT Delhi in 2023. Currently, I am
-    <s>unemployed</s> trying to build something me and my friends want. Before
-    this, I was an AI research intern at the Vector Institute where I worked on
-    improving sampling efficiency in model based RL. Hit me up if you want to
-    talk about AI or startups.
-  </p>
-
-  <p>
-    In my free time (which is getting increasingly hard to define these days),
-    I like exploring — from trivia rabbit holes on the internet to food joints
-    in cities. I’ve had the privilege of living in Ahmedabad, Delhi, (and now)
-    Bangalore. Hit me up if you want to share food recommendations for any of
-    these (or parts of Bombay).
-  </p>
-
-  <p><strong>tldr; Hit me up!</strong></p>
+  <Intro />
 
   <div class="contact-row">
     <a href="https://api.whatsapp.com/send?phone=916351492258">WhatsApp</a>
@@ -129,32 +38,34 @@ const sections = [
         </summary>
         <div class="section-body">
           <p class="muted">{s.blurb}</p>
-          {s.groups.map((g) => (
-            <>
-              {g.name && <h3>{g.name}</h3>}
-              {g.items ? (
-                <ul class="media-list">
-                  {g.items.map((it) => (
-                    <li>
-                      <a class="arrow-link" href={it.href} target="_blank" rel="noreferrer">
-                        {it.t}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : g.pages.length > 0 ? (
-                <ul class="page-list">
-                  {g.pages.map((p) => (
-                    <li>
-                      <a class="arrow-link" href={p.href}>{p.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p class="muted">Nothing here yet.</p>
-              )}
-            </>
-          ))}
+          {s.pages && (
+            <ul class="page-list">
+              {s.pages.map((p) => (
+                <li>
+                  <a class="arrow-link" href={p.href}>{p.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+          {s.groups &&
+            s.groups.map((g) => (
+              <>
+                <h3>{g.name}</h3>
+                {g.items?.length ? (
+                  <ul class="media-list">
+                    {g.items.map((it) => (
+                      <li>
+                        <a class="arrow-link" href={it.url} target="_blank" rel="noreferrer">
+                          {it.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="muted">Nothing here yet.</p>
+                )}
+              </>
+            ))}
         </div>
       </details>
     ))

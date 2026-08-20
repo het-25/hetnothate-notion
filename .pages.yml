@@ -1,0 +1,90 @@
+# Pages CMS config (https://pagescms.org)
+# Log in at https://app.pagescms.org with GitHub and pick this repo
+# to edit the site's content in a friendly UI. Every save commits to
+# main, which auto-deploys via Vercel.
+
+media:
+  input: public
+  output: /
+
+content:
+  - name: intro
+    label: Homepage intro
+    type: file
+    path: src/content/home-intro.md
+    fields:
+      - name: body
+        label: Intro text
+        type: rich-text
+
+  - name: sections
+    label: Homepage sections
+    type: file
+    path: src/data/sections.yaml
+    list: true
+    fields:
+      - name: title
+        label: Section title
+        type: string
+      - name: blurb
+        label: Blurb
+        type: text
+      - name: pages
+        label: Site page links
+        type: object
+        list: true
+        required: false
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: href, label: Path (e.g. /hamster), type: string }
+      - name: groups
+        label: Link categories (Media / Art)
+        type: object
+        list: true
+        required: false
+        fields:
+          - name: name
+            label: Category
+            type: string
+          - name: items
+            label: Items
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: url, label: Link, type: string }
+
+  - name: pages
+    label: Pages
+    type: collection
+    path: src/pages
+    match: '*.md'
+    view:
+      fields: [title, updated]
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: ../layouts/Page.astro
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+      - name: description
+        label: Description (meta)
+        type: string
+      - name: updated
+        label: Last updated
+        type: date
+        required: false
+      - name: cover
+        label: Cover image (e.g. /covers/foo.jpg)
+        type: string
+        required: false
+      - name: coverPosition
+        label: Cover crop (e.g. center 50%)
+        type: string
+        required: false
+      - name: body
+        label: Body
+        type: rich-text
