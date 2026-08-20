@@ -2,6 +2,7 @@
 layout: ../layouts/Page.astro
 title: Pet Projects
 description: A list of some of my fun projects.
+updated: 2025-03-06
 ---
 
 A list of some of my “fun projects”:
@@ -17,8 +18,10 @@ A list of some of my “fun projects”:
   understand our knowledge graph better. Inspired by this very cool video.
 
 I had the pleasure of working on some very interesting research during my
-undergrad. I will most definitely write about the technical aspects of those
-soon.
+undergrad. While I don't think grad school / academia is for me, I would love
+to spend more time going deeper into some of these topics. Maybe as a
+[gentleman scientist](https://en.wikipedia.org/wiki/Independent_scientist) for
+the fun of it.
 
 - [Neuromorphic Computing](/neuromorphic)
 - [Geometric Deep Learning](/geometric-dl)

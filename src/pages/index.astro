@@ -6,28 +6,44 @@ const sections = [
     title: 'Startup / Projects',
     blurb:
       'Learnings from projects I’ve worked on in the past, and updates about stuff I’m currently exploring.',
-    pages: [
-      { label: 'Hamster', href: '/hamster' },
-      { label: 'Pet Projects', href: '/pet-projects' }
+    groups: [
+      {
+        pages: [
+          { label: 'Hamster', href: '/hamster' },
+          { label: 'Pet Projects', href: '/pet-projects' }
+        ]
+      }
     ]
   },
   {
     title: 'Reviews',
     blurb: 'Reviews of my favourite music, shows, and books. (Propaganda)',
-    pages: [
-      { label: 'Hamilton', href: '/hamilton' },
-      { label: 'The Strokes', href: '/strokes' },
-      { label: 'The Bear', href: '/carmy-is-not-okay' },
-      { label: 'War Of The Rats', href: '/war-of-ze-ratz' }
+    groups: [
+      { name: 'Films / TV', pages: [] },
+      {
+        name: 'Music',
+        pages: [
+          { label: 'Hamilton', href: '/hamilton' },
+          { label: 'The Strokes', href: '/strokes' }
+        ]
+      },
+      {
+        name: 'Books',
+        pages: [{ label: 'War Of The Rats', href: '/war-of-ze-ratz' }]
+      }
     ]
   },
   {
     title: 'Wandering',
     blurb:
       'A place to document my journey navigating through the roads of cities and rabbit holes of the internet. Both of them typically at ungodly hours.',
-    pages: [
-      { label: 'Puzzles', href: '/puzzles' },
-      { label: 'Familiar Neighbourhoods', href: '/multiple-homes' }
+    groups: [
+      {
+        pages: [
+          { label: 'Puzzles', href: '/puzzles' },
+          { label: 'Familiar Neighbourhoods', href: '/multiple-homes' }
+        ]
+      }
     ]
   }
 ]
@@ -37,19 +53,18 @@ const sections = [
   <h1>Het’s Website</h1>
 
   <p>
-    Hey, this is Het. Welcome to my corner of the internet. I like math, tech,
-    history, pop culture, and <em>yapping</em>. Hit me up if you want to talk
-    about any of the four (or an unrelated 5th thing), big fan of listening to
-    people yap.
+    Hi, I am Het. Welcome to my excuse for owning a domain. I like math, tech,
+    history, pop culture, and yapping. Hit me up if you want to talk about any
+    of the four (or an unrelated 5th thing), big fan of listening to people
+    yap.
   </p>
 
   <p>
-    I graduated with an EE degree from IIT Delhi in 2023. These days I’m
-    building <a href="https://usefaff.com">faff</a> — an earlier version of
-    this page said I was “unemployed, trying to build something from scratch”,
-    and this is the something. Before this, I was an AI research intern at the
-    Vector Institute where I worked on improving sampling efficiency in model
-    based RL. Hit me up if you want to talk about AI or startups.
+    I graduated with an EE degree from IIT Delhi in 2023. Currently, I am
+    <s>unemployed</s> trying to build something me and my friends want. Before
+    this, I was an AI research intern at the Vector Institute where I worked on
+    improving sampling efficiency in model based RL. Hit me up if you want to
+    talk about AI or startups.
   </p>
 
   <p>
@@ -79,22 +94,36 @@ const sections = [
 
   {
     sections.map((s) => (
-      <section>
-        <h2>{s.title}</h2>
-        <p class="muted">{s.blurb}</p>
-        <ul class="page-list">
-          {s.pages.map((p) => (
-            <li>
-              <a href={p.href}>
-                <svg viewBox="0 0 30 30" width="18" height="18" aria-hidden="true">
-                  <path d="M16,1H4v28h22V11L16,1z M16,3.828L23.172,11H16V3.828z M24,27H6V3h8v10h10V27z M8,17h14v-2H8V17z M8,21h14v-2H8V21z M8,25h14v-2H8V25z" />
-                </svg>
-                <span class="label">{p.label}</span>
-              </a>
-            </li>
+      <details class="section">
+        <summary>
+          <span class="chev" aria-hidden="true">▸</span>
+          <h2>{s.title}</h2>
+        </summary>
+        <div class="section-body">
+          <p class="muted">{s.blurb}</p>
+          {s.groups.map((g) => (
+            <>
+              {g.name && <h3>{g.name}</h3>}
+              {g.pages.length > 0 ? (
+                <ul class="page-list">
+                  {g.pages.map((p) => (
+                    <li>
+                      <a href={p.href}>
+                        <svg viewBox="0 0 30 30" width="18" height="18" aria-hidden="true">
+                          <path d="M16,1H4v28h22V11L16,1z M16,3.828L23.172,11H16V3.828z M24,27H6V3h8v10h10V27z M8,17h14v-2H8V17z M8,21h14v-2H8V21z M8,25h14v-2H8V25z" />
+                        </svg>
+                        <span class="label">{p.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="muted">Nothing here yet.</p>
+              )}
+            </>
           ))}
-        </ul>
-      </section>
+        </div>
+      </details>
     ))
   }
 

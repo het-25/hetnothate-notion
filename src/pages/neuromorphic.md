@@ -5,6 +5,7 @@ description: An analog answer to compute bottlenecks.
 parents:
   - label: Pet Projects
     href: /pet-projects
+updated: 2025-03-09
 ---
 
 An analog answer to compute bottlenecks.

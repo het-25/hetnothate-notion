@@ -2,6 +2,14 @@
 import Base from './Base.astro'
 const { frontmatter } = Astro.props
 const crumbs = [...(frontmatter.parents ?? []), { label: frontmatter.title }]
+const updated = frontmatter.updated
+  ? new Date(frontmatter.updated).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      timeZone: 'UTC'
+    })
+  : null
 ---
 
 <Base
@@ -12,5 +20,6 @@ const crumbs = [...(frontmatter.parents ?? []), { label: frontmatter.title }]
   coverPosition={frontmatter.coverPosition}
 >
   <h1>{frontmatter.title}</h1>
+  {updated && <p class="updated">Last updated {updated}</p>}
   <slot />
 </Base>

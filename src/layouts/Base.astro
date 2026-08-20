@@ -183,6 +183,39 @@ const pageTitle = title === "Het's Website" ? title : `${title} · Het's Website
       .page-list svg { flex: none; fill: var(--muted); }
       .page-list .label { border-bottom: 1px solid var(--line); }
 
+      details.section { margin: 0.75rem 0; }
+      details.section summary {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        cursor: pointer;
+        list-style: none;
+        padding: 0.4rem 0.5rem;
+        margin: 0 -0.5rem;
+        border-radius: 4px;
+        user-select: none;
+      }
+      details.section summary::-webkit-details-marker { display: none; }
+      details.section summary:hover { background: var(--card); }
+      details.section summary h2 { margin: 0; }
+      .chev {
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: transform 0.15s ease;
+      }
+      details[open] .chev { transform: rotate(90deg); }
+      @media (prefers-reduced-motion: reduce) {
+        .chev { transition: none; }
+      }
+      .section-body { padding: 0.25rem 0 0.5rem 1.7rem; }
+      .section-body > p:first-child { margin-top: 0.25rem; }
+
+      .updated {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin: -0.9rem 0 1.75rem;
+      }
+
       .contact-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
       .contact-row a {
         padding: 0.3rem 0.9rem;
